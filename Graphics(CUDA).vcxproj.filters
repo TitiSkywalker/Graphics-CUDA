@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CudaCompile Include="code\main.cu" />
+    <CudaCompile Include="code\Tool.cuh">
+      <Filter>Utility</Filter>
+    </CudaCompile>
+    <CudaCompile Include="code\Configuration.cuh">
+      <Filter>Utility</Filter>
+    </CudaCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Object">
+      <UniqueIdentifier>{86e8bc5c-68dd-4641-9448-f5f82163c919}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vecmath">
+      <UniqueIdentifier>{ad93345e-ab23-4ad0-b792-bc73c83a6826}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{f5ef0bb9-0e93-4c99-b8cd-b6e76f4b85f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Light">
+      <UniqueIdentifier>{8d30a970-871b-46d5-81f1-5ef0a3cf173f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Render">
+      <UniqueIdentifier>{a1633140-6fbe-4406-95bd-ead47e01ec92}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="code\Object3D.cuh">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Sphere.cuh">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Camera.cuh">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Hit.cuh">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Image.cuh">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Ray.cuh">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Matrix3f.cuh">
+      <Filter>Vecmath</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Vecmath.cuh">
+      <Filter>Vecmath</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Matrix4f.cuh">
+      <Filter>Vecmath</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Vector2f.cuh">
+      <Filter>Vecmath</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Vector3f.cuh">
+      <Filter>Vecmath</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Vector4f.cuh">
+      <Filter>Vecmath</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Matrix2f.cuh">
+      <Filter>Vecmath</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Material.cuh">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="code\SceneParser.cuh">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Plane.cuh">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Light.cuh">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="code\GPURenderer.cuh">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Triangle.cuh">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="code\Velocity.cuh">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="code\File.cuh">
+      <Filter>Utility</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="code\CPURenderer.cuh">
+      <Filter>Render</Filter>
+    </None>
+  </ItemGroup>
+</Project>
