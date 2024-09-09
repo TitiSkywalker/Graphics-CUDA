@@ -7,6 +7,7 @@
 */
 #pragma once
 #include <iostream>
+#include <chrono>
 
 #include "Configuration.cuh"
 #include "GPURenderer.cuh"
@@ -93,48 +94,37 @@ class Renderer
 	}
 
 public:
-
 	static void run()
 	{
 		//timer
 		auto start = chrono::high_resolution_clock::now();
 
-		int width, height;
-		if (Configuration::SUPERSAMPLING)
-		{
-			width = Configuration::WIDTH * 3;
-			height = Configuration::HEIGHT * 3;
-		}
-		else
-		{
-			width = Configuration::WIDTH;
-			height = Configuration::HEIGHT;
-		}
+		int width = (Configuration::SUPERSAMPLING) ? Configuration::WIDTH * 3 : Configuration::WIDTH;
+		int height = (Configuration::SUPERSAMPLING) ? Configuration::HEIGHT * 3 : Configuration::HEIGHT;
 
 		//parse scene and prepare a package
-
 		SceneParser sceneParser(Configuration::getInputFile(Configuration::CHOICE));
 		if (!sceneParser.checkStatus())
 		{
-			cout << "An error occured while parsing scene, error message: " << sceneParser.getErrorMessage() << endl;
+			cout << "An error occured for scene file, error message: " << sceneParser.getErrorMessage() << endl;
 			return;
 		}
 
 		Package package = prepareScene(width, height, sceneParser);
 		Image image(width, height);
 
-		//calculate grid shape according to block shape
+		//thread scheduling
 		int gridx = (width + Configuration::BLOCKX - 1) / Configuration::BLOCKX;
 		int gridy = (height + Configuration::BLOCKY - 1) / Configuration::BLOCKY;
 		dim3 grid(gridx, gridy);
 		dim3 block(Configuration::BLOCKX, Configuration::BLOCKY);
 
-		//run kernel function and syncronize
+		//run kernel
 		cout << "Start CUDA kernel, grid = (" << gridx << ", " << gridy << "), block = (" << block.x << ", " << block.y << ")" << endl;
 		render << <grid, block >> > (package);
 		Tool::deviceSynchronize("Renderer::run()");
 
-		//transport image fro GPU to CPU and save it
+		//transport image from GPU to CPU
 		Tool::cudaMemcpyChecked(image.GetData(), package.image, width * height * sizeof(Vector3f),
 			cudaMemcpyDeviceToHost, "Renderer::run()");
 
