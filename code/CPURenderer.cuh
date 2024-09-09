@@ -116,7 +116,7 @@ public:
 		SceneParser sceneParser(Configuration::getInputFile(Configuration::CHOICE));
 		if (!sceneParser.checkStatus())
 		{
-			cout << "Failed to parse scene, error message: " << sceneParser.getErrorMessage() << endl;
+			cout << "An error occured while parsing scene, error message: " << sceneParser.getErrorMessage() << endl;
 			return;
 		}
 
@@ -133,7 +133,6 @@ public:
 		cout << "Start CUDA kernel, grid = (" << gridx << ", " << gridy << "), block = (" << block.x << ", " << block.y << ")" << endl;
 		render << <grid, block >> > (package);
 		Tool::deviceSynchronize("Renderer::run()");
-		cout << "CUDA kernel finished" << endl;
 
 		//transport image fro GPU to CPU and save it
 		Tool::cudaMemcpyChecked(image.GetData(), package.image, width * height * sizeof(Vector3f),

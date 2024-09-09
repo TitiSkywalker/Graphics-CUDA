@@ -64,7 +64,7 @@ class SceneParser
 public:
     SceneParser(const char* filename)
     {
-        cout << "Read in scene file: " << filename << endl;
+        cout << "Read in scene file " << filename << endl;
         //initialize some reasonable default values
         group = NULL;
         camera = NULL;
@@ -87,9 +87,9 @@ public:
             if (filename == NULL)
                 throw runtime_error("filename is NULL");
 
-            const char* ext = &filename[strlen(filename) - 4];
+            const char* ext = &filename[strlen(filename) - 6];
 
-            if (strcmp(ext, ".txt") != 0)
+            if (strcmp(ext, ".scene") != 0)
                 throw runtime_error("wrong file name extension: " + string(ext));
 
             string filePath = getInputFilePath(filename);

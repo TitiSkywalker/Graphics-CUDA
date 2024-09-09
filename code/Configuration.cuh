@@ -30,9 +30,9 @@ public:
 		switch (choice)
 		{
 		case 1:
-			return "scene0_sphere.txt";
+			return "scene0_sphere.scene";
 		default:
-			return "scene0_sphere.txt";
+			return "scene0_sphere.scene";
 		}
 	}
 
