@@ -1,1 +1,1 @@
-# Graphics(CUDA)
+# Monte Carlo Ray Tracing in CUDA
