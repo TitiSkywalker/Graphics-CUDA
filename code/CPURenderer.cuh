@@ -102,6 +102,13 @@ public:
 		int width = (Configuration::SUPERSAMPLING) ? Configuration::WIDTH * 3 : Configuration::WIDTH;
 		int height = (Configuration::SUPERSAMPLING) ? Configuration::HEIGHT * 3 : Configuration::HEIGHT;
 
+		if ((width % Configuration::BLOCKX) || (height % Configuration::BLOCKY))
+		{
+			cout << "Image size is not a multiple of thread block size" << endl;
+			cout << "(" << width << ", " << height << ") % (" << Configuration::BLOCKX << ", " << Configuration::BLOCKY << ") != (0, 0)" << endl;
+			return;
+		}
+
 		//parse scene and prepare a package
 		SceneParser sceneParser(Configuration::getInputFile(Configuration::CHOICE));
 		if (!sceneParser.checkStatus())
@@ -134,18 +141,20 @@ public:
 			image.GaussianBlur();
 		}
 
+		string outPath = getOutputFilePath(Configuration::getOutputFile(Configuration::CHOICE));
+
 		if (Configuration::SUPERSAMPLING)
 		{
 			cout << "Start down sampling" << endl;
 			Image small_image(Configuration::WIDTH, Configuration::HEIGHT);
 			small_image.DownSampling(image);
-			cout << "Save image" << endl;
-			small_image.SaveBMP(getOutputFilePath(Configuration::getOutputFile(Configuration::CHOICE)).c_str());
+			cout << "Save image to " << outPath << endl;
+			small_image.SaveBMP(outPath.c_str());
 		}
 		else
 		{
-			cout << "Save image" << endl;
-			image.SaveBMP(getOutputFilePath(Configuration::getOutputFile(Configuration::CHOICE)).c_str());
+			cout << "Save image to " << outPath << endl;
+			image.SaveBMP(outPath.c_str());
 		}
 
 		//free storage

@@ -170,6 +170,7 @@ public:
 		Ray newRay(origin, r.getDirection());
 
 		object_type type = object->getType();
+		
 		switch (type)
 		{
 			case SPHERE:	return intersectSphere((Sphere*)object, newRay, h, tmin);

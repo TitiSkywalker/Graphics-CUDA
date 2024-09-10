@@ -248,7 +248,7 @@ __device__ static inline Vector3f traceRay(const Package& package, Ray& ray, flo
 
 		//accumulate falloff
 		float distance = hit.getT();
-		falloff = falloff / (1 + 0.025 * distance * distance);
+		falloff = falloff / (1 + FALLOFF * distance * distance);
 
 		return localColor;
 	}
@@ -269,9 +269,6 @@ __global__ static void render(Package package)
 
 	int x = blockIdx.x * blockDim.x + ix;
 	int y = blockIdx.y * blockDim.y + iy;
-
-	if (x > package.width || y > package.height)
-		return;
 
 	//copy camera into shared memory once for all
 	if (ix == 0 && iy == 0)
@@ -343,7 +340,6 @@ __global__ static void render(Package package)
 			thisRay.set(nextRay);
 			prevHit.set(thisHit);
 		}
-
 		color = color + localColor;
 	}
 	color = color / package.sampleRate;

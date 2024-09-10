@@ -34,9 +34,6 @@ public:
 		normal = Vector3f::cross(b - a, c - b).normalized();
 	}
 
-	__device__ Triangle()
-	{}
-
 	__device__ object_type getType() const override
 	{
 		return TRIANGLE;
