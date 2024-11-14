@@ -82,7 +82,7 @@ class Renderer
 		return package;
 	}
 
-	//memory leak will not happen in GPU, but freeing memory is a good habit
+	//memory leak will not happen in GPU, but freeing memories is a good habit
 	static void freePackage(const Package& package)
 	{
 		//free package array storage in GPU
@@ -158,6 +158,7 @@ public:
 		}
 
 		//free storage
+		cout << "Free package" << endl;
 		freePackage(package);
 
 		//compute total time
