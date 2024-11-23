@@ -2,7 +2,7 @@
 
 ![alt text](./output/scene0_sphere.bmp)
 
-This project implements Monte Carlo ray tracing in CUDA. It is a simplified version of another C++ ray tracer, which is accelerated by MPI. You can check it out [here](https://github.com/TitiSkywalker/Graphics).
+This project implements Monte Carlo ray tracing in CUDA. It is a simplified version of another C++ ray tracer. You can check it out [here](https://github.com/TitiSkywalker/Graphics).
 
 ## 0. Table of contents
 - [Installation](#1-Installation)
