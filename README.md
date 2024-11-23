@@ -33,12 +33,9 @@ This project implements Monte Carlo ray tracing in CUDA. It is a simplified vers
 To prepare for the rendering, please make sure you have these directories within the project directory: 
 
 ```
-Graphics
+Graphics-CUDA
 ├─input
 │  └─in.scene
-│  └─...
-├─mesh
-│  └─model.obj
 │  └─...
 ├─output
    └─out.bmp
